@@ -51,6 +51,8 @@ jobs:
 
       - name: Android SDK einrichten
         uses: android-actions/setup-android@v3
+        with:
+          packages: "platform-tools"
 
       - name: Benötigte SDK-Pakete installieren
         run: sdkmanager "platforms;android-36" "build-tools;36.1.0"
