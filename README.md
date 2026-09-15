@@ -1,16 +1,16 @@
-# FitTrack
+﻿# FitTrack
 
 <p align="center">
   <img src="splash.png" alt="FitTrack Cover" width="260" />
 </p>
 
 <p align="center">
-  <b>Offline-fähige Trainings-App</b> – Workouts, Ernährung, Wasser, Wasserziel- & Kalorienrechner,
+  <b>Offline-fÃ¤hige Trainings-App</b> â€“ Workouts, ErnÃ¤hrung, Wasser, Wasserziel- & Kalorienrechner,
   Erinnerungen, Ziele, Skill-Baum und Check-in-Streak in einer schlanken Android-WebView-App.
 </p>
 
 <p align="center">
-  <a href="../../actions/workflows/android.yml"><img alt="Android CI" src="https://github.com/__OWNER__/fittrack/actions/workflows/android.yml/badge.svg" /></a>
+  <a href="../../actions/workflows/android.yml"><img alt="Android CI" src="https://github.com/dariussevestrean05-bot/fittrack/actions/workflows/android.yml/badge.svg" /></a>
   <img alt="License" src="https://img.shields.io/badge/license-MIT-blue.svg" />
   <img alt="Platform" src="https://img.shields.io/badge/platform-Android%208.0%2B-3DDC84.svg" />
   <img alt="Offline" src="https://img.shields.io/badge/offline-100%25-success.svg" />
@@ -22,12 +22,12 @@
 
 | Bereich | Funktion |
 |---|---|
-| **Start** | Nächstes Training mit Countdown, Streak, Kalorien- & Wasser-Ring, Makros, Quick-Actions |
-| **Training** | Logbuch mit Sätzen/RPE/Dauer, Pläne (Vorlagen + eigener Baukasten mit Suche & Kategorien), geteilte Pläne, Verlauf |
-| **Ernährung** | Rechner mit ~70 Lebensmitteln (g/ml), Online-Suche (Open Food Facts), Foto-/Manuell-Modus, Wasser-Tracking, automatische Berechnung aus Körperdaten |
-| **Erinnerungen** | Wöchentliche Trainings-Reminder inkl. echter Android-Benachrichtigungen (AlarmManager, Reboot-fest) |
-| **Ziele** | Ehrlicher Foto-Check-in (Bild wird nur geprüft, nie gespeichert) + Calisthenics-Skill-Baum |
-| **Profil** | Persönliche Daten, Körperbau/KFA, Tagesziel-Rechner, Theme (Dark/Light), Daten-Reset |
+| **Start** | NÃ¤chstes Training mit Countdown, Streak, Kalorien- & Wasser-Ring, Makros, Quick-Actions |
+| **Training** | Logbuch mit SÃ¤tzen/RPE/Dauer, PlÃ¤ne (Vorlagen + eigener Baukasten mit Suche & Kategorien), geteilte PlÃ¤ne, Verlauf |
+| **ErnÃ¤hrung** | Rechner mit ~70 Lebensmitteln (g/ml), Online-Suche (Open Food Facts), Foto-/Manuell-Modus, Wasser-Tracking, automatische Berechnung aus KÃ¶rperdaten |
+| **Erinnerungen** | WÃ¶chentliche Trainings-Reminder inkl. echter Android-Benachrichtigungen (AlarmManager, Reboot-fest) |
+| **Ziele** | Ehrlicher Foto-Check-in (Bild wird nur geprÃ¼ft, nie gespeichert) + Calisthenics-Skill-Baum |
+| **Profil** | PersÃ¶nliche Daten, KÃ¶rperbau/KFA, Tagesziel-Rechner, Theme (Dark/Light), Daten-Reset |
 
 **Design:** kompaktes, modernes UI mit Dark- und Light-Mode, Hamburger-Navigation,
 `splash.png`-Cover mit Zoom-Intro beim Kaltstart.
@@ -36,24 +36,24 @@
 
 ```
 fittrack/
-├─ fitX.js                  # App-Logik (React 18, JSX) – Single Source of Truth
-├─ index.html               # Boot-Loader: lädt vendor/*, kompiliert JSX, mountet App
-├─ splash.png               # Cover: Splash + adaptive App-Icon-Quelle
-├─ app_icon.png             # Icon-Quelle (Quadrat)
-├─ vendor/                  # React, ReactDOM, Babel, lucide-react (offline, keine CDNs)
-├─ scripts/                 # sync-assets: Root → Android-Assets
-├─ android/                 # Android-Projekt (Gradle, WebView-Shell, Reminder-Service)
-│  └─ app/src/main/
-│     ├─ assets/            # Kopie von fitX.js, index.html, splash.png, vendor/
-│     ├─ java/de/fittrack/app/
-│     └─ res/               # Icons, Splash-Theme, Styles
-├─ docs/archive/            # historische Migrations-/Release-Notizen
-└─ src/, public/, vite.config.ts   # Vorbereitung für spätere Vite/PWA-Migration
+â”œâ”€ fitX.js                  # App-Logik (React 18, JSX) â€“ Single Source of Truth
+â”œâ”€ index.html               # Boot-Loader: lÃ¤dt vendor/*, kompiliert JSX, mountet App
+â”œâ”€ splash.png               # Cover: Splash + adaptive App-Icon-Quelle
+â”œâ”€ app_icon.png             # Icon-Quelle (Quadrat)
+â”œâ”€ vendor/                  # React, ReactDOM, Babel, lucide-react (offline, keine CDNs)
+â”œâ”€ scripts/                 # sync-assets: Root â†’ Android-Assets
+â”œâ”€ android/                 # Android-Projekt (Gradle, WebView-Shell, Reminder-Service)
+â”‚  â””â”€ app/src/main/
+â”‚     â”œâ”€ assets/            # Kopie von fitX.js, index.html, splash.png, vendor/
+â”‚     â”œâ”€ java/de/fittrack/app/
+â”‚     â””â”€ res/               # Icons, Splash-Theme, Styles
+â”œâ”€ docs/archive/            # historische Migrations-/Release-Notizen
+â””â”€ src/, public/, vite.config.ts   # Vorbereitung fÃ¼r spÃ¤tere Vite/PWA-Migration
 ```
 
-**Warum WebView?** Ein gemeinsamer Code-Stand für Web-Vorschau und APK, ohne Store-Abhängigkeit.
-Die App arbeitet vollständig offline: `localStorage` als Datenspeicher, lokale Vendor-Bundles,
-Netzwerk nur optional für die Open-Food-Facts-Suche.
+**Warum WebView?** Ein gemeinsamer Code-Stand fÃ¼r Web-Vorschau und APK, ohne Store-AbhÃ¤ngigkeit.
+Die App arbeitet vollstÃ¤ndig offline: `localStorage` als Datenspeicher, lokale Vendor-Bundles,
+Netzwerk nur optional fÃ¼r die Open-Food-Facts-Suche.
 
 ## Voraussetzungen
 
@@ -107,4 +107,4 @@ PR-Regeln, Asset-Sync und Code-Stil.
 
 ## Lizenz
 
-[MIT](LICENSE) © 2026 FitTrack Contributors
+[MIT](LICENSE) Â© 2026 FitTrack Contributors

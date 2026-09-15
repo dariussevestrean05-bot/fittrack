@@ -1,8 +1,8 @@
-blank_issues_enabled: false
+﻿blank_issues_enabled: false
 contact_links:
   - name: Frage / Diskussion
-    url: https://github.com/__OWNER__/fittrack/discussions
-    about: Für offene Fragen, Ideen und Austausch bitte die Discussions nutzen.
+    url: https://github.com/dariussevestrean05-bot/fittrack/discussions
+    about: FÃ¼r offene Fragen, Ideen und Austausch bitte die Discussions nutzen.
   - name: Sicherheitsproblem
-    url: https://github.com/__OWNER__/fittrack/security/advisories/new
-    about: Sicherheitslücken bitte vertraulich melden, nicht als öffentliches Issue.
+    url: https://github.com/dariussevestrean05-bot/fittrack/security/advisories/new
+    about: SicherheitslÃ¼cken bitte vertraulich melden, nicht als Ã¶ffentliches Issue.

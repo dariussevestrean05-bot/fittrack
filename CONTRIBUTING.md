@@ -1,13 +1,13 @@
-# Contributing – FitTrack
+﻿# Contributing â€“ FitTrack
 
-Danke, dass du mitarbeitest! Damit beide Contributors ohne Reibung parallel arbeiten können,
+Danke, dass du mitarbeitest! Damit beide Contributors ohne Reibung parallel arbeiten kÃ¶nnen,
 gelten die folgenden Regeln.
 
 ## 1. Setup (einmalig)
 
 ```bash
 # Repo klonen
-git clone git@github.com:__OWNER__/fittrack.git
+git clone git@github.com:dariussevestrean05-bot/fittrack.git
 cd fittrack
 
 # Android: SDK-Pfad eintragen (nicht committen!)
@@ -31,29 +31,29 @@ cd android
 
 | Branch | Bedeutung |
 |---|---|
-| `main` | Immer lauffähig. **Geschützt** – nur per Pull Request. |
+| `main` | Immer lauffÃ¤hig. **GeschÃ¼tzt** â€“ nur per Pull Request. |
 | `feat/<thema>` | Neues Feature, z. B. `feat/wasser-tracker` |
 | `fix/<thema>` | Bugfix, z. B. `fix/streak-dst` |
 | `docs/<thema>` | Doku/README |
-| `chore/<thema>` | Tooling, Build, Aufräumen |
+| `chore/<thema>` | Tooling, Build, AufrÃ¤umen |
 
 Direktes Pushen auf `main` ist technisch blockiert (Branch Protection).
-Jeder PR braucht **mindestens 1 Review** der anderen Person und einen grünen CI-Lauf.
+Jeder PR braucht **mindestens 1 Review** der anderen Person und einen grÃ¼nen CI-Lauf.
 
-## 3. Änderungen einreichen
+## 3. Ã„nderungen einreichen
 
 ```bash
 git checkout main && git pull
 git checkout -b feat/mein-thema
-# … arbeiten …
+# â€¦ arbeiten â€¦
 git add -A
-git commit -m "feat(training): Übungssuche mit Kategorien"
+git commit -m "feat(training): Ãœbungssuche mit Kategorien"
 git push -u origin feat/mein-thema
 gh pr create --fill
 ```
 
 - Kleine, thematisch getrennte PRs (ein Thema pro PR).
-- PR-Template ausfüllen, Screenshots von UI-Änderungen anhängen.
+- PR-Template ausfÃ¼llen, Screenshots von UI-Ã„nderungen anhÃ¤ngen.
 - Kein Merge ohne Review; bei Konflikten rebasen (`git rebase main`), nicht mergen.
 
 ## 4. Commit-Konvention (Conventional Commits)
@@ -69,35 +69,35 @@ Beispiele:
 
 ```
 feat(ernaehrung): Wasserziel automatisch berechnen
-fix(android): Wöchentliche Reminder nach Alarm neu planen
-docs(readme): Build-Anleitung ergänzt
+fix(android): WÃ¶chentliche Reminder nach Alarm neu planen
+docs(readme): Build-Anleitung ergÃ¤nzt
 ```
 
 ## 5. Code-Stil
 
-- **App-Logik:** `fitX.js` (Single-File React, JSX). Keine neuen Abhängigkeiten ohne Absprache –
-  die App läuft offline über `vendor/` und darf keinen CDN-Zugriff einführen.
-- **Dark/Light:** Beide Themes müssen funktionieren. Farben **nur** über CSS-Variablen
-  (`var(--accent)`, `var(--bg)`, …), nie hartkodiert.
-- **Android:** Java, 4 Spaces, keine stillen `catch`-Blöcke ohne Log im Fehlerfall.
-- **Barrierefreiheit:** Interaktive Elemente ≥ 44 px hoch, `aria-label` bei Icon-Buttons.
+- **App-Logik:** `fitX.js` (Single-File React, JSX). Keine neuen AbhÃ¤ngigkeiten ohne Absprache â€“
+  die App lÃ¤uft offline Ã¼ber `vendor/` und darf keinen CDN-Zugriff einfÃ¼hren.
+- **Dark/Light:** Beide Themes mÃ¼ssen funktionieren. Farben **nur** Ã¼ber CSS-Variablen
+  (`var(--accent)`, `var(--bg)`, â€¦), nie hartkodiert.
+- **Android:** Java, 4 Spaces, keine stillen `catch`-BlÃ¶cke ohne Log im Fehlerfall.
+- **Barrierefreiheit:** Interaktive Elemente â‰¥ 44 px hoch, `aria-label` bei Icon-Buttons.
 
 ## 6. Assets synchron halten
 
-`fitX.js`, `index.html` und `splash.png` liegen doppelt: im Root (für die Web-Version)
-und in `android/app/src/main/assets/` (für die APK). Nach Änderungen an Root-Dateien:
+`fitX.js`, `index.html` und `splash.png` liegen doppelt: im Root (fÃ¼r die Web-Version)
+und in `android/app/src/main/assets/` (fÃ¼r die APK). Nach Ã„nderungen an Root-Dateien:
 
 ```powershell
 powershell -File scripts/sync-assets.ps1      # Windows
 bash scripts/sync-assets.sh                   # macOS/Linux
 ```
 
-Der CI-Job `asset-sync-check` schlägt fehl, wenn beide Stände auseinanderlaufen.
+Der CI-Job `asset-sync-check` schlÃ¤gt fehl, wenn beide StÃ¤nde auseinanderlaufen.
 
 ## 7. Pull-Request-Checkliste
 
-- [ ] Build läuft lokal (`./gradlew assembleDebug`)
+- [ ] Build lÃ¤uft lokal (`./gradlew assembleDebug`)
 - [ ] Assets gesynct (`scripts/sync-assets.*`)
-- [ ] Dark- **und** Light-Mode geprüft (bei UI-Änderungen)
+- [ ] Dark- **und** Light-Mode geprÃ¼ft (bei UI-Ã„nderungen)
 - [ ] Keine Secrets, keine `local.properties`, kein Keystore im Diff
-- [ ] Screenshot/Video bei UI-Änderungen angehängt
+- [ ] Screenshot/Video bei UI-Ã„nderungen angehÃ¤ngt
