@@ -19,7 +19,7 @@ jobs:
     name: Asset-Sync prüfen
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Root-Quellen mit Android-Assets vergleichen
         run: |
@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: asset-sync-check
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: JDK 21 einrichten
         uses: actions/setup-java@v6
