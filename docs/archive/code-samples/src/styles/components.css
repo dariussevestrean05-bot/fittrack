@@ -1,0 +1,248 @@
+/* FitTrack Phase 5 – Komponenten-Layer (A11y + Touch + Motion + Safe-Area)
+ * Baut auf tokens.css auf. Keine Farbcodes hier: nur var()-Referenzen.
+ * Behebt aus fitX.js css-String (ab Z.1626):
+ *  - Touch-Targets < 44px, fehlender :focus-visible, blur(90px), 90px-Screen ohne Safe-Area,
+ *    input font-size 0.9rem (iOS-Zoom), fehlendes content-visibility, Animationen ohne reduced-motion.
+ */
+
+/* ---------- 1) 44px Touch-Targets (WCAG 2.5.8) ---------- */
+
+.segment {
+  min-height: var(--touch-min);
+  min-width: var(--touch-min);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) var(--space-12);
+}
+
+.day-chip {
+  min-height: var(--touch-min);
+  min-width: var(--touch-min);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) var(--space-12);
+}
+
+.toggle-btn {
+  min-height: var(--touch-min);
+  min-width: var(--touch-min);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) var(--space-12);
+}
+
+.template-chip {
+  min-height: var(--touch-min);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-8) var(--space-12);
+}
+
+.suggest-item {
+  min-height: var(--touch-min);
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-12) var(--space-12);
+}
+
+.icon-btn-ghost {
+  min-height: var(--touch-min);
+  min-width: var(--touch-min);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8);
+}
+
+/* Geschwister mit gleichem Problem (im css-String ebenfalls zu klein): */
+.icon-btn,
+.theme-toggle,
+.primary-btn,
+.accept-btn,
+.link-btn,
+.tab-btn {
+  min-height: var(--touch-min);
+}
+
+.icon-btn,
+.theme-toggle {
+  min-width: var(--touch-min);
+}
+
+.tab-btn {
+  min-height: 56px;
+}
+
+/* Ernaehrungs-Tabs explizit 48px (siehe PHASE5_NOTES M3) */
+.nutri-tab {
+  min-height: 48px;
+  min-width: var(--touch-min);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- 2) Sichtbarer Fokus (:focus-visible) ---------- */
+
+:where(a, button, input, select, textarea, [tabindex]):focus {
+  outline: none;
+}
+
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-10);
+}
+
+.tree-node:focus-visible,
+.day-chip:focus-visible,
+.segment:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ---------- 3) Inputs: 16px gegen iOS-Auto-Zoom ---------- */
+
+.input,
+.input-small,
+select.input,
+textarea.input {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* ---------- 4) Performance: Blur 60px statt 90px + content-visibility ---------- */
+
+.blob {
+  filter: blur(60px);
+}
+
+.row-card {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 72px;
+}
+
+.checkin-item,
+.hist-day {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 96px;
+}
+
+/* Low-End-Guard: <html class="no-fx"> oder manuell bei prefers-reduced-data / schwachem Geraet */
+.no-fx .blob,
+.no-fx .bg-glow {
+  display: none;
+}
+
+.no-fx .card-in,
+.no-fx .tree-node.next {
+  animation: none;
+}
+
+.no-fx .tabbar {
+  backdrop-filter: none;
+}
+
+/* ---------- 5) Safe-Area (Notch / Gestenleiste) ---------- */
+
+.screen {
+  padding-bottom: calc(90px + env(safe-area-inset-bottom, 0px));
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+.tabbar {
+  padding-bottom: calc(6px + env(safe-area-inset-bottom, 0px));
+  padding-left: calc(8px + env(safe-area-inset-left, 0px));
+  padding-right: calc(8px + env(safe-area-inset-right, 0px));
+}
+
+.statusbar {
+  height: env(safe-area-inset-top, 0px);
+}
+
+/* Bottom-Sheets / Snackbars muessen ebenfalls ueber der Gestenleiste liegen */
+.sheet,
+.snackbar,
+.undo-snackbar {
+  margin-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ---------- 6) Reduced Motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .blob,
+  .bg-glow {
+    display: none;
+  }
+
+  .card-in {
+    animation: none;
+  }
+
+  .tree-node.next {
+    animation: none;
+    border-color: var(--gold);
+  }
+
+  .spin {
+    animation: none;
+  }
+
+  .progress-fill {
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+    transition-duration: 0.01ms;
+    scroll-behavior: auto;
+  }
+}
+
+/* ---------- 7) SystemFeedback-Beilage (KlassenContracts aus SystemFeedback.tsx) ---------- */
+
+.skeleton-card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-20);
+  padding: var(--space-16);
+}
+
+.empty-state-illustration {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-subtle);
+  color: var(--accent);
+  border: 1px solid var(--border-subtle);
+}
+
+.sheet-backdrop {
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.sheet {
+  background: var(--surface-1-solid);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-24) var(--radius-24) 0 0;
+}
+
+.snackbar,
+.undo-snackbar {
+  background: var(--surface-1-solid);
+  border: 1px solid var(--border-strong);
+  color: var(--text-primary);
+  border-radius: var(--radius-14);
+}

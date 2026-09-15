@@ -1,0 +1,42 @@
+name: Feature vorschlagen
+description: Idee oder Verbesserung für FitTrack
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Welches Problem löst das?
+      description: Was ist heute umständlich oder fehlt?
+    validations:
+      required: true
+  - type: textarea
+    id: loesung
+    attributes:
+      label: Vorschlag
+      description: Wie sollte es sich verhalten?
+    validations:
+      required: true
+  - type: dropdown
+    id: bereich
+    attributes:
+      label: Bereich
+      options:
+        - Start
+        - Training
+        - Ernährung
+        - Erinnerungen
+        - Ziele
+        - Profil
+        - Android/System
+        - Design/UX
+        - Sonstiges
+    validations:
+      required: true
+  - type: textarea
+    id: alternativen
+    attributes:
+      label: Alternativen / Skizzen
+      description: Optional – Mockups, Beispiele aus anderen Apps
+    validations:
+      required: false

@@ -1,0 +1,69 @@
+name: Bug melden
+description: Etwas funktioniert nicht wie erwartet
+title: "[Bug] "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Danke für die Meldung! Bitte so genau wie möglich ausfüllen.
+  - type: textarea
+    id: beschreibung
+    attributes:
+      label: Was passiert?
+      description: Kurze Beschreibung des Fehlers.
+    validations:
+      required: true
+  - type: textarea
+    id: schritte
+    attributes:
+      label: Schritte zum Nachstellen
+      placeholder: |
+        1. App öffnen
+        2. Zu Training → …
+        3. Fehler erscheint
+    validations:
+      required: true
+  - type: textarea
+    id: erwartet
+    attributes:
+      label: Erwartetes Verhalten
+    validations:
+      required: true
+  - type: dropdown
+    id: bereich
+    attributes:
+      label: Betroffener Bereich
+      options:
+        - Start
+        - Training
+        - Ernährung
+        - Erinnerungen
+        - Ziele
+        - Profil
+        - Android/System (z. B. Benachrichtigungen)
+        - Sonstiges
+    validations:
+      required: true
+  - type: input
+    id: geraet
+    attributes:
+      label: Gerät & Android-Version
+      placeholder: "z. B. Samsung S21 Ultra, Android 16"
+    validations:
+      required: true
+  - type: dropdown
+    id: theme
+    attributes:
+      label: Theme
+      options: [Dark, Light, Beides]
+    validations:
+      required: false
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / Screenshots
+      description: Optional – z. B. `adb logcat -s FitXConsole:V`
+      render: shell
+    validations:
+      required: false

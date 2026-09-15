@@ -1,0 +1,14 @@
+<resources>
+    <style name="AppTheme" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:colorAccent">#FF5A36</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">#0D0F13</item>
+        <item name="android:navigationBarColor">#0D0F13</item>
+    </style>
+    <!-- Kaltstart-Cover: sofort da, bevor das WebView lädt. -->
+    <style name="Theme.Splash" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_bg</item>
+        <item name="android:statusBarColor">#0D0F13</item>
+        <item name="android:navigationBarColor">#0D0F13</item>
+    </style>
+</resources>

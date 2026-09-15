@@ -1,0 +1,34 @@
+# --- Build-Artefakte ---
+build/
+app/build/
+.gradle/
+*.apk
+*.aab
+*.ap_
+*.dex
+output-metadata.json
+
+# --- Lokale Konfiguration / Secrets ---
+local.properties
+*.keystore
+*.jks
+keystore.properties
+.env
+.env.*
+
+# --- IDE ---
+.idea/
+*.iml
+.vscode/
+*.swp
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Node / Vite (nur für die geplante Migration nötig) ---
+node_modules/
+dist/assets/
+*.log
+npm-debug.log*

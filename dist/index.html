@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FitTrack</title>
+    <!--
+      FitTrack Phase 6 – CSP Meta Sample für dist/index.html
+      In Produktion via HTTP-Header ODER Meta (Meta bei file:///Capacitor nötig).
+      Vite-Build: dieses Meta in index.html (Root) pflegen, landet automatisch in dist/.
+      connect-src enthält OFF für Nährwertsuche, sonst KEINE Fremdquellen (kein esm.sh!).
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; connect-src 'self' https://world.openfoodfacts.org"
+    />
+    <meta name="theme-color" content="#FF5A36" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/assets/index.js"></script>
+  </body>
+</html>

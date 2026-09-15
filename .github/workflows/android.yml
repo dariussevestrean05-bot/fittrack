@@ -1,0 +1,77 @@
+name: Android CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  asset-sync-check:
+    name: Asset-Sync prüfen
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Root-Quellen mit Android-Assets vergleichen
+        run: |
+          status=0
+          for f in fitX.js index.html; do
+            if ! cmp -s "$f" "android/app/src/main/assets/$f"; then
+              echo "::error file=$f::$f weicht von android/app/src/main/assets/$f ab. Bitte 'scripts/sync-assets.*' ausführen."
+              status=1
+            fi
+          done
+          if ! cmp -s splash.png "android/app/src/main/assets/splash.png"; then
+            echo "::error file=splash.png::splash.png weicht von android/app/src/main/assets/splash.png ab. Bitte 'scripts/sync-assets.*' ausführen."
+            status=1
+          fi
+          exit $status
+
+  build:
+    name: Debug-APK bauen
+    runs-on: ubuntu-latest
+    needs: asset-sync-check
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: JDK 21 einrichten
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Android SDK einrichten
+        uses: android-actions/setup-android@v3
+
+      - name: Benötigte SDK-Pakete installieren
+        run: sdkmanager "platforms;android-36" "build-tools;36.1.0"
+
+      - name: Gradle-Cache aktivieren
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('android/**/*.gradle', 'android/gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: gradle-${{ runner.os }}-
+
+      - name: Debug-APK bauen
+        working-directory: android
+        run: ./gradlew assembleDebug --no-daemon --stacktrace
+
+      - name: APK hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 14

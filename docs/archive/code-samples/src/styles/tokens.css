@@ -1,0 +1,207 @@
+/* FitTrack Phase 5 – Design Tokens
+ * Quelle: FitX/fitX.js THEMES (Z.190-224) + css-String (ab Z.1626)
+ * Dark = Default (:root). Light via [data-theme="light"].
+ * WCAG-AA-Fixes (Light): Accent #C93E16, text-tertiary #5F6675, danger #B42318.
+ */
+
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Surfaces (Mapping alt -> neu):
+     --bg         -> --surface-0  (#0D0F13)
+     --bg-elevated-> --surface-1  (rgba white 0.05)
+     --bg-input   -> --surface-2/input (rgba white 0.06)
+     #14161F (tree-wrap, hardcodiert) -> --surface-sunken */
+  --surface-0: #0d0f13;
+  --surface-1: rgba(255, 255, 255, 0.05);
+  --surface-1-solid: #171a21;
+  --surface-2: rgba(255, 255, 255, 0.06);
+  --surface-2-solid: #1c1f2a;
+  --surface-sunken: #14161f;
+
+  /* Text (alt -> neu: --text -> primary, --text-muted -> secondary, --text-faint -> tertiary) */
+  --text-primary: #f3f5f7;
+  --text-secondary: #9aa3af;
+  --text-tertiary: #8a8fa0;
+
+  /* Border */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+
+  /* Accent */
+  --accent: #ff5a36;
+  --accent-contrast: #0d0f13;
+  --accent-subtle: rgba(255, 90, 54, 0.16);
+  --accent-2: #8b6bff;
+  --accent-2-contrast: #f3f5f7;
+
+  /* Semantik */
+  --gold: #e5a83b;
+  --gold-subtle: rgba(229, 168, 59, 0.16);
+  --danger: #ff5c5c;
+  --danger-contrast: #0d0f13;
+  --danger-subtle: rgba(255, 92, 92, 0.12);
+  --success: #34d399;
+  --success-contrast: #0d0f13;
+  --success-subtle: rgba(52, 211, 153, 0.14);
+
+  /* Chrome / Effekte */
+  --tabbar-bg: rgba(20, 22, 28, 0.75);
+  --shadow: 0 25px 70px rgba(0, 0, 0, 0.55);
+  --blob-a: rgba(255, 90, 54, 0.22);
+  --blob-b: rgba(139, 107, 255, 0.24);
+  --blob-c: rgba(54, 200, 255, 0.14);
+  --bg-glow:
+    radial-gradient(120% 60% at 50% -10%, rgba(255, 90, 54, 0.14), transparent 60%),
+    radial-gradient(100% 50% at 50% 110%, rgba(139, 107, 255, 0.16), transparent 60%);
+  --focus-ring: var(--accent);
+
+  /* Spacing (4–24) */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+
+  /* Radius */
+  --radius-10: 10px;
+  --radius-14: 14px;
+  --radius-20: 20px;
+  --radius-24: 24px;
+
+  /* Touch / Typo */
+  --touch-min: 44px;
+  --font-display: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, sans-serif;
+  --font-h1: 800 1.5rem/1.2 var(--font-display);
+  --font-h2: 700 1rem/1.3 var(--font-display);
+  --font-body: 400 0.95rem/1.5 var(--font-display);
+  --font-meta: 400 0.75rem/1.4 var(--font-display);
+  --font-num: 800 1.4rem/1.2 var(--font-display);
+
+  /* Legacy-Aliase (Migration fitX.js cssVars): kein Hex, nur var()-Referenzen */
+  --bg: var(--surface-0);
+  --bg-elevated: var(--surface-1);
+  --bg-input: var(--surface-2);
+  --border: var(--border-subtle);
+  --border-strong: var(--border-strong);
+  --text: var(--text-primary);
+  --text-muted: var(--text-secondary);
+  --text-faint: var(--text-tertiary);
+  --accent2: var(--accent-2);
+  --accent2-contrast: var(--accent-2-contrast);
+  --blob-a: var(--blob-a);
+  --blob-b: var(--blob-b);
+  --blob-c: var(--blob-c);
+  --bg-glow: var(--bg-glow);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  --surface-0: #f5f5fa;
+  --surface-1: #ffffff;
+  --surface-1-solid: #ffffff;
+  --surface-2: rgba(20, 23, 30, 0.04);
+  --surface-2-solid: #ececf2;
+  /* Fix: kein dunkles #14161F mehr im Light-Mode */
+  --surface-sunken: #e9eaf0;
+
+  --text-primary: #14161c;
+  --text-secondary: #5b6270;
+  /* WCAG-AA-Fix: statt #8990A0 */
+  --text-tertiary: #5f6675;
+
+  --border-subtle: rgba(20, 23, 30, 0.08);
+  --border-strong: rgba(20, 23, 30, 0.14);
+
+  /* WCAG-AA-Fix: statt #E1481D (Kontrast auf Weiss zu schwach) */
+  --accent: #c93e16;
+  --accent-contrast: #ffffff;
+  --accent-subtle: rgba(201, 62, 22, 0.12);
+  --accent-2: #6a45e8;
+  --accent-2-contrast: #ffffff;
+
+  /* Gold muss im Light-Mode dunkler sein (AA auf #FFFFFF) */
+  --gold: #93370d;
+  --gold-subtle: rgba(147, 55, 13, 0.12);
+  /* WCAG-AA-Fix: statt #D8402F */
+  --danger: #b42318;
+  --danger-contrast: #ffffff;
+  --danger-subtle: rgba(180, 35, 24, 0.1);
+  --success: #067647;
+  --success-contrast: #ffffff;
+  --success-subtle: rgba(6, 118, 71, 0.1);
+
+  --tabbar-bg: rgba(255, 255, 255, 0.7);
+  --shadow: 0 25px 60px rgba(30, 30, 50, 0.16);
+  --blob-a: rgba(225, 72, 29, 0.16);
+  --blob-b: rgba(106, 69, 232, 0.16);
+  --blob-c: rgba(20, 150, 220, 0.12);
+  --bg-glow:
+    radial-gradient(120% 60% at 50% -10%, rgba(225, 72, 29, 0.1), transparent 60%),
+    radial-gradient(100% 50% at 50% 110%, rgba(106, 69, 232, 0.12), transparent 60%);
+  --focus-ring: var(--accent);
+
+  /* Legacy-Aliase bleiben var()-only */
+  --bg: var(--surface-0);
+  --bg-elevated: var(--surface-1);
+  --bg-input: var(--surface-2);
+  --border: var(--border-subtle);
+  --text: var(--text-primary);
+  --text-muted: var(--text-secondary);
+  --text-faint: var(--text-tertiary);
+}
+
+/* Migrations-Fixes direkt auf Token-Ebene (kein Hex, nur Vars).
+   1) Tree-wrap: vorher background #14161F hardcodiert (fitX.js Z.1727).
+   2) Primary/Accept-Buttons: vorher color #fff hardcodiert (Z.1683/1692/1698/1703/1751)
+      -> var(--accent-contrast) damit Light (#FFFFFF) und Dark (#0D0F13) stimmen. */
+.tree-wrap {
+  background: var(--surface-sunken);
+}
+
+.tree-branch-tag {
+  background: var(--surface-sunken);
+  color: var(--text-tertiary);
+}
+
+.tree-node {
+  background: var(--surface-2-solid);
+  border-color: var(--border-strong);
+  color: var(--text-secondary);
+}
+
+.tree-node.done {
+  background: var(--gold-subtle);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.tree-thumb {
+  border-color: var(--gold);
+}
+
+.tree-name {
+  color: var(--text-primary);
+}
+
+.tree-tier {
+  color: var(--text-tertiary);
+}
+
+.primary-btn,
+.accept-btn,
+.icon-btn,
+.day-chip.active,
+.toggle-btn.active,
+.due-banner {
+  color: var(--accent-contrast);
+}
+
+.error-banner {
+  background: var(--danger-subtle);
+  border-color: var(--danger);
+  color: var(--danger);
+}
